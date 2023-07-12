@@ -5,7 +5,7 @@ app = Flask("__name__")
 DOC = [{
   'id': 1,
   'name': 'Birendra Sharma',
-  'info': 'Heart Surgeon',
+  'info': 'Cardiologist',
   'Email': 'birendrasha444@gmail.com'
 }, {
   'id': 2,
