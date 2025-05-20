@@ -1,23 +1,79 @@
-# Python Flask ReplAuth
+# Hospital Management System (HMS) – Python Flask Project
 
-Using the ReplAuth with Flask is super easy! First we create a new Flask app: 
+## Overview
 
-<details>
-  <summary>Import Flask and create new Flask app</summary>
+This project is a **Hospital Management System (HMS)** built using Python and Flask. The application is designed to manage information related to healthcare, supporting healthcare providers in efficiently handling various aspects of hospital management.
 
+It demonstrates integration with ReplAuth for authentication and showcases how to access and display user information from Replit headers in a Flask web app.
+
+---
+
+## Features
+
+- **User Authentication with ReplAuth**: Supports both Node.js and Python Flask implementations for ReplAuth.
+- **Manage Hospital Data**: Handles information for all hospital departments, including:
+  - Clinical
+  - Financial
+  - Laboratory
+  - Inpatient & Outpatient
+  - Operation Theater
+  - Materials
+  - Nursing
+  - Pharmaceutical
+  - Radiology
+  - Pathology and more
+- **Modern Web UI**: Uses Bootstrap for styling (see `templates/navbar.html`, `footer.html`).
+- **Custom Registration Page**: User can register via a custom form (`templates/registernow.html`).
+- **About Page**: Simple about section for project details.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.8+
+- Flask
+- (For Replit: See `replit.nix` for environment setup)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/BirendraKSharma/softwareProject.git
+   cd softwareProject
+   ```
+
+2. Set up the virtual environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+   *(For Replit users, the environment is configured using `replit.nix`.)*
+
+3. Run the application:
+   ```bash
+   flask run
+   ```
+
+### Usage
+
+- Access the homepage at `http://localhost:5000/`.
+- Registration form at `/templates/registernow.html`.
+- About page at `/templates/about.html`.
+
+---
+
+## Authentication with ReplAuth (Python Flask)
+
+**Example code to fetch user data from headers:**
 ```python
 from flask import Flask, render_template, request
 app = Flask('app')
+
 @app.route('/')
-```
-</details>
-
-And then we request the headers: 
-
-<details>
-  <summary>Requested Headers:</summary>
-
-```python
 def hello_world():
     print(request.headers)
     return render_template(
@@ -31,14 +87,9 @@ def hello_world():
         user_url=request.headers['X-Replit-User-Url']
     )
 ```
-</details>
 
-In this code we've requested all the possible headers, which are these:
-
-<details>
-  <summary>All Replit Headers</summary>
-
-```python
+**Available Replit Headers:**
+```
 X-Replit-User-Bio
 X-Replit-User-Id
 X-Replit-User-Name
@@ -47,21 +98,15 @@ X-Replit-User-Roles
 X-Replit-User-Teams
 X-Replit-User-Url
 ```
-</details>
 
-Once we've requested all these headers, we can show the information we've got after the user has passed through the Auth. This info will be displayed on the console, but can also be displayed in a html file.
-
-We can show this by displaying the variable assigned to a header in a HTML tag (it can also be shown without a tag). If we wanted to show the username of the user we would put this:
-
+Display a username in a template:
 ```html
 <h1>{{ user_name }}</h1>
 ```
 
-And the output will be a heading (h1) with the username. 
+---
 
-# ReplAuth FAQ 
-
-The question is in a quote and in italic and the answer is in a bullet point.
+## FAQ
 
 <details>
   <summary>ReplAuth FAQ</summary>
@@ -79,15 +124,16 @@ The question is in a quote and in italic and the answer is in a bullet point.
   - Yes! You can find it in the [Replit Docs](https://docs.replit.com)
 </details>
 
-# Template
+---
 
-**Name**: Python Flask ReplAuth
+## Support
 
-**Description**: Python Flask ReplAuth is easy and useful to use! What are you waiting for? Start using ReplAuth today!
-
-# Questions?
-
-If you have any question please look at our support resources:
-
+If you have any questions, please refer to:
 - [Replit Docs](https://docs.replit.com)
 - [Ask forum](https://ask.replit.com)
+
+---
+
+## License
+
+This project is for educational purposes. Please see individual files for license information if present.
