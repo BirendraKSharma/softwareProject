@@ -1,139 +1,144 @@
-# Hospital Management System (HMS) – Python Flask Project
+# ��� Hospital Management System (HMS)
 
-## Overview
+A modern, responsive web application for managing hospital operations, built with Flask and Bootstrap 5.
 
-This project is a **Hospital Management System (HMS)** built using Python and Flask. The application is designed to manage information related to healthcare, supporting healthcare providers in efficiently handling various aspects of hospital management.
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Flask](https://img.shields.io/badge/Flask-3.0.0-green.svg)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.0-purple.svg)
 
-It demonstrates integration with ReplAuth for authentication and showcases how to access and display user information from Replit headers in a Flask web app.
+## ��� Overview
 
----
+This Hospital Management System is a web-based application built using Python and Flask. It provides a comprehensive platform for managing hospital operations including patient registration, appointment booking, doctor management, and administrative controls.
 
-## Features
+## ✨ Features
 
-- **User Authentication with ReplAuth**: Supports both Node.js and Python Flask implementations for ReplAuth.
-- **Manage Hospital Data**: Handles information for all hospital departments, including:
-  - Clinical
-  - Financial
-  - Laboratory
-  - Inpatient & Outpatient
-  - Operation Theater
-  - Materials
-  - Nursing
-  - Pharmaceutical
-  - Radiology
-  - Pathology and more
-- **Modern Web UI**: Uses Bootstrap for styling (see `templates/navbar.html`, `footer.html`).
-- **Custom Registration Page**: User can register via a custom form (`templates/registernow.html`).
-- **About Page**: Simple about section for project details.
+### For Patients
+- ��� User Registration & Login - Secure account creation with password encryption
+- ���‍⚕️ Browse Doctors - View all available doctors with their specialties
+- ��� Book Appointments - Schedule appointments with preferred doctors
+- ��� Appointment Dashboard - View and manage your appointments
+- ❌ Cancel Appointments - Cancel upcoming appointments when needed
+- ��� Profile Management - Update personal information
 
----
+### For Administrators
+- ��� Admin Panel - Comprehensive dashboard for hospital management
+- ��� User Management - View and manage registered users
+- ��� Doctor Management - Add, edit, and remove doctors
+- ��� Appointment Management - View all appointments with filtering
+- ��� Search & Filter - Advanced search for doctors and appointments
+- ��� Statistics Dashboard - View key metrics
 
-## Getting Started
+### UI/UX Features
+- ��� Fully Responsive - Works on desktop, tablet, and mobile
+- ��� Modern Design - Clean interface with gradients and animations
+- ��� Color-Coded Status - Visual indicators for appointment status
+- ⚡ Fast Performance - Optimized loading and navigation
+
+## ��� Quick Start
 
 ### Prerequisites
+- Python 3.8 or higher
+- pip (Python package manager)
 
-- Python 3.8+
-- Flask
-- (For Replit: See `replit.nix` for environment setup)
+### Installation Steps
 
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/BirendraKSharma/softwareProject.git
-   cd softwareProject
-   ```
-
-2. Set up the virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
-
-   *(For Replit users, the environment is configured using `replit.nix`.)*
-
-3. Run the application:
-   ```bash
-   flask run
-   ```
-
-### Usage
-
-- Access the homepage at `http://localhost:5000/`.
-- Registration form at `/templates/registernow.html`.
-- About page at `/templates/about.html`.
-
----
-
-## Authentication with ReplAuth (Python Flask)
-
-**Example code to fetch user data from headers:**
-```python
-from flask import Flask, render_template, request
-app = Flask('app')
-
-@app.route('/')
-def hello_world():
-    print(request.headers)
-    return render_template(
-        'index.html',
-        user_id=request.headers['X-Replit-User-Id'],
-        user_name=request.headers['X-Replit-User-Name'],
-        user_roles=request.headers['X-Replit-User-Roles'],
-        user_bio=request.headers['X-Replit-User-Bio'],
-        user_profile_image=request.headers['X-Replit-User-Profile-Image'],
-        user_teams=request.headers['X-Replit-User-Teams'],
-        user_url=request.headers['X-Replit-User-Url']
-    )
+1. Navigate to project directory:
+```bash
+cd d:/programming/project/hms
 ```
 
-**Available Replit Headers:**
-```
-X-Replit-User-Bio
-X-Replit-User-Id
-X-Replit-User-Name
-X-Replit-User-Profile-Image
-X-Replit-User-Roles
-X-Replit-User-Teams
-X-Replit-User-Url
+2. Create virtual environment (recommended):
+```bash
+python -m venv .venv
 ```
 
-Display a username in a template:
-```html
-<h1>{{ user_name }}</h1>
+3. Activate virtual environment:
+   - Windows: `.venv\Scripts\activate`
+   - Linux/Mac: `source .venv/bin/activate`
+
+4. Install dependencies:
+```bash
+pip install -r requirements.txt
 ```
 
+5. Run the application:
+```bash
+python main.py
+```
+
+6. Open browser and go to: `http://localhost:5000`
+
+### Default Admin Login
+- Email: `admin@hms.com`
+- Password: `admin123`
+
+## ��� Project Structure
+
+```
+hms/
+├── main.py              # Main Flask application
+├── databases.py         # Database models
+├── requirements.txt     # Dependencies
+├── README.md           # Documentation
+├── static/
+│   ├── style.css       # Custom CSS
+│   ├── hospital.jpg    # Images
+│   └── system.png
+└── templates/          # 18 HTML templates
+    ├── base.html
+    ├── home.html
+    ├── dashboard.html
+    ├── admin_dashboard.html
+    └── ...
+```
+
+## ���️ Technologies
+
+- Backend: Flask 3.0.0, Flask-SQLAlchemy, Flask-Login
+- Database: SQLite
+- Frontend: HTML5, CSS3, Bootstrap 5.3.0
+- Security: Werkzeug password hashing
+- Icons: SVG icons
+
+## ��� Usage Guide
+
+### For Patients
+1. Register a new account
+2. Login with your credentials
+3. Browse available doctors
+4. Book an appointment by selecting doctor and date/time
+5. View appointments in dashboard
+6. Cancel if needed
+
+### For Administrators
+1. Login with admin credentials
+2. Access Admin Panel from navigation
+3. Manage doctors, appointments, and users
+4. Use search and filter options
+5. View statistics
+
+## ��� Troubleshooting
+
+**Database Issues**: Delete the `instance` folder and restart to recreate database
+
+**Port In Use**: Change port in main.py: `app.run(debug=True, port=5001)`
+
+**Dependencies Error**: Update pip: `pip install --upgrade pip`
+
+## ��� Customization
+
+Change colors in `static/style.css`:
+```css
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+}
+```
+
+## ��� License
+
+MIT License - Open source and free to use
+
 ---
 
-## FAQ
-
-<details>
-  <summary>ReplAuth FAQ</summary>
-  
-  > *How many ReplAuths are there?*
-  
-  - There are 2 repl auths!
- ---
-  > *Which ReplAuths are there?*
-  
-  - Node.js and Python Flask
----
-  > *Is there a Replit Documentation on ReplAuths?*
-
-  - Yes! You can find it in the [Replit Docs](https://docs.replit.com)
-</details>
-
----
-
-## Support
-
-If you have any questions, please refer to:
-- [Replit Docs](https://docs.replit.com)
-- [Ask forum](https://ask.replit.com)
-
----
-
-## License
-
-This project is for educational purposes. Please see individual files for license information if present.
+**Built with ❤️ using Flask and Bootstrap**

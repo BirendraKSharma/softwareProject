@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - HMS{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-5 mb-4">
+                <i class="bi bi-person-circle"></i> My Profile
+            </h1>
+
+            <div class="card shadow">
+                <div class="card-header">
+                    <i class="bi bi-pencil-square"></i> Update Your Information
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{{ url_for('profile') }}">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">
+                                    <i class="bi bi-person"></i> Full Name
+                                </label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ current_user.name }}" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">
+                                    <i class="bi bi-envelope"></i> Email Address
+                                </label>
+                                <input type="email" class="form-control" id="email" value="{{ current_user.email }}" disabled>
+                                <small class="form-text text-muted">Email cannot be changed</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">
+                                <i class="bi bi-telephone"></i> Phone Number
+                            </label>
+                            <input type="tel" class="form-control" id="phone" name="phone" value="{{ current_user.phone or '' }}">
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h5 class="mb-3"><i class="bi bi-key"></i> Change Password</h5>
+                        <p class="text-muted">Leave blank if you don't want to change your password</p>
+
+                        <div class="mb-3">
+                            <label for="new_password" class="form-label">
+                                <i class="bi bi-lock"></i> New Password
+                            </label>
+                            <input type="password" class="form-control" id="new_password" name="new_password">
+                            <small class="form-text text-muted">Minimum 6 characters</small>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-save"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Account Info -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <i class="bi bi-info-circle"></i> Account Information
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <strong>Account Type:</strong>
+                            <p class="mb-0">
+                                {% if current_user.is_admin %}
+                                    <span class="badge bg-danger">Administrator</span>
+                                {% else %}
+                                    <span class="badge bg-primary">Patient</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Member Since:</strong>
+                            <p class="mb-0">{{ current_user.created_at.strftime('%B %d, %Y') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

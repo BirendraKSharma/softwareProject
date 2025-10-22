@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Book Appointment - HMS{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <a href="{{ url_for('doctor_profile', doctor_id=doctor.id) }}" class="btn btn-outline-secondary mb-3">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+
+            <div class="card shadow-lg">
+                <div class="card-header">
+                    <i class="bi bi-calendar-plus"></i> Book Appointment
+                </div>
+                <div class="card-body p-4">
+                    <!-- Doctor Info -->
+                    <div class="alert alert-info">
+                        <h5 class="mb-2"><i class="bi bi-person-badge"></i> {{ doctor.name }}</h5>
+                        <p class="mb-1"><strong>Specialty:</strong> {{ doctor.specialty }}</p>
+                        {% if doctor.available_days %}
+                            <p class="mb-1"><strong>Available Days:</strong> {{ doctor.available_days }}</p>
+                        {% endif %}
+                        {% if doctor.available_time %}
+                            <p class="mb-0"><strong>Available Time:</strong> {{ doctor.available_time }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Appointment Form -->
+                    <form method="POST" action="{{ url_for('book_appointment', doctor_id=doctor.id) }}">
+                        <div class="mb-3">
+                            <label for="appointment_date" class="form-label">
+                                <i class="bi bi-calendar"></i> Appointment Date
+                            </label>
+                            <input type="date" class="form-control" id="appointment_date" name="appointment_date" required min="{{ today }}">
+                            <small class="form-text text-muted">Please select a date within the doctor's available days</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="appointment_time" class="form-label">
+                                <i class="bi bi-clock"></i> Preferred Time
+                            </label>
+                            <select class="form-select" id="appointment_time" name="appointment_time" required>
+                                <option value="">Select a time...</option>
+                                <option value="09:00 AM">09:00 AM</option>
+                                <option value="09:30 AM">09:30 AM</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="10:30 AM">10:30 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="11:30 AM">11:30 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="02:30 PM">02:30 PM</option>
+                                <option value="03:00 PM">03:00 PM</option>
+                                <option value="03:30 PM">03:30 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                                <option value="04:30 PM">04:30 PM</option>
+                                <option value="05:00 PM">05:00 PM</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="reason" class="form-label">
+                                <i class="bi bi-clipboard-pulse"></i> Reason for Visit
+                            </label>
+                            <textarea class="form-control" id="reason" name="reason" rows="4" required placeholder="Please describe your symptoms or reason for consultation..."></textarea>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <i class="bi bi-exclamation-triangle"></i> Your appointment request will be reviewed. You will be notified once it's confirmed.
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-calendar-check"></i> Submit Appointment Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    // Set minimum date to today
+    document.getElementById('appointment_date').min = new Date().toISOString().split('T')[0];
+</script>
+{% endblock %}
+{% endblock %}

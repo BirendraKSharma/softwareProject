@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}{% if doctor %}Edit{% else %}Add{% endif %} Doctor - Admin{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4">
+                <i class="bi bi-person-plus"></i> {% if doctor %}Edit{% else %}Add New{% endif %} Doctor
+            </h1>
+
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label"><i class="bi bi-person"></i> Full Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ doctor.name if doctor else '' }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="specialty" class="form-label"><i class="bi bi-award"></i> Specialty *</label>
+                                <input type="text" class="form-control" id="specialty" name="specialty" value="{{ doctor.specialty if doctor else '' }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label"><i class="bi bi-envelope"></i> Email *</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ doctor.email if doctor else '' }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label"><i class="bi bi-telephone"></i> Phone</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" value="{{ doctor.phone if doctor else '' }}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="qualification" class="form-label"><i class="bi bi-mortarboard"></i> Qualification</label>
+                                <input type="text" class="form-control" id="qualification" name="qualification" value="{{ doctor.qualification if doctor else '' }}" placeholder="e.g., MBBS, MD">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="experience" class="form-label"><i class="bi bi-clock-history"></i> Experience (years)</label>
+                                <input type="number" class="form-control" id="experience" name="experience" value="{{ doctor.experience if doctor else '' }}" min="0">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="available_days" class="form-label"><i class="bi bi-calendar-week"></i> Available Days</label>
+                                <input type="text" class="form-control" id="available_days" name="available_days" value="{{ doctor.available_days if doctor else '' }}" placeholder="e.g., Mon,Wed,Fri">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="available_time" class="form-label"><i class="bi bi-clock"></i> Available Time</label>
+                                <input type="text" class="form-control" id="available_time" name="available_time" value="{{ doctor.available_time if doctor else '' }}" placeholder="e.g., 9:00 AM - 5:00 PM">
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-save"></i> {% if doctor %}Update{% else %}Add{% endif %} Doctor
+                            </button>
+                            <a href="{{ url_for('admin_doctors') }}" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

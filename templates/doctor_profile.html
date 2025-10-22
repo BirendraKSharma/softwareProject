@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}{{ doctor.name }} - HMS{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <a href="{{ url_for('doctors') }}" class="btn btn-outline-secondary mb-3">
+                <i class="bi bi-arrow-left"></i> Back to Doctors
+            </a>
+
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width: 120px; height: 120px;">
+                            <i class="bi bi-person-badge text-primary" style="font-size: 4rem;"></i>
+                        </div>
+                        <h2 class="mb-2">{{ doctor.name }}</h2>
+                        <p class="lead">
+                            <span class="specialty">{{ doctor.specialty }}</span>
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    <div class="row mb-4">
+                        {% if doctor.qualification %}
+                            <div class="col-md-6 mb-3">
+                                <h5><i class="bi bi-mortarboard text-primary"></i> Qualification</h5>
+                                <p class="text-muted">{{ doctor.qualification }}</p>
+                            </div>
+                        {% endif %}
+
+                        {% if doctor.experience %}
+                            <div class="col-md-6 mb-3">
+                                <h5><i class="bi bi-award text-primary"></i> Experience</h5>
+                                <p class="text-muted">{{ doctor.experience }} years</p>
+                            </div>
+                        {% endif %}
+
+                        {% if doctor.email %}
+                            <div class="col-md-6 mb-3">
+                                <h5><i class="bi bi-envelope text-primary"></i> Email</h5>
+                                <p class="text-muted">{{ doctor.email }}</p>
+                            </div>
+                        {% endif %}
+
+                        {% if doctor.phone %}
+                            <div class="col-md-6 mb-3">
+                                <h5><i class="bi bi-telephone text-primary"></i> Phone</h5>
+                                <p class="text-muted">{{ doctor.phone }}</p>
+                            </div>
+                        {% endif %}
+
+                        {% if doctor.available_days %}
+                            <div class="col-md-6 mb-3">
+                                <h5><i class="bi bi-calendar-week text-primary"></i> Available Days</h5>
+                                <p class="text-muted">{{ doctor.available_days }}</p>
+                            </div>
+                        {% endif %}
+
+                        {% if doctor.available_time %}
+                            <div class="col-md-6 mb-3">
+                                <h5><i class="bi bi-clock text-primary"></i> Available Time</h5>
+                                <p class="text-muted">{{ doctor.available_time }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <hr>
+
+                    <div class="d-grid gap-2">
+                        {% if current_user.is_authenticated and not current_user.is_admin %}
+                            <a href="{{ url_for('book_appointment', doctor_id=doctor.id) }}" class="btn btn-primary btn-lg">
+                                <i class="bi bi-calendar-check"></i> Book Appointment
+                            </a>
+                            <a href="mailto:{{ doctor.email }}" class="btn btn-outline-primary">
+                                <i class="bi bi-envelope"></i> Send Email
+                            </a>
+                        {% elif not current_user.is_authenticated %}
+                            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+                                <i class="bi bi-box-arrow-in-right"></i> Login to Book Appointment
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

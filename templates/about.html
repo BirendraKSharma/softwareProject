@@ -1,11 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>about</title>
-</head>
-<body>
-    <p>this is about</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}About - HMS{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="display-4 text-center mb-5">About Hospital Management System</h1>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="text-primary mb-4"><i class="bi bi-hospital"></i> Our Mission</h2>
+                    <p class="lead">
+                        To provide a modern, efficient, and user-friendly platform that connects patients with healthcare professionals, 
+                        streamlining the appointment booking process and improving overall healthcare delivery.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h2 class="text-primary mb-4"><i class="bi bi-star"></i> What We Offer</h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <i class="bi bi-check-circle-fill text-success" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h5>Easy Appointment Booking</h5>
+                                    <p class="text-muted">Book appointments with specialists in just a few clicks.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <i class="bi bi-check-circle-fill text-success" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h5>Experienced Doctors</h5>
+                                    <p class="text-muted">Access to qualified and experienced medical professionals.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <i class="bi bi-check-circle-fill text-success" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h5>Secure & Private</h5>
+                                    <p class="text-muted">Your health information is secure and confidential.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <i class="bi bi-check-circle-fill text-success" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h5>24/7 Access</h5>
+                                    <p class="text-muted">Manage your appointments anytime, anywhere.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h2 class="text-primary mb-4"><i class="bi bi-people"></i> Our Team</h2>
+                    <p>
+                        HMS is developed and maintained by a dedicated team of developers committed to improving healthcare accessibility 
+                        through technology. We continuously work to enhance the platform based on user feedback and emerging healthcare needs.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h2 class="text-primary mb-4"><i class="bi bi-envelope"></i> Contact Us</h2>
+                    <p>
+                        Have questions or suggestions? We'd love to hear from you!
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-envelope-fill text-primary"></i> Email: contact@hms.com</li>
+                        <li class="mb-2"><i class="bi bi-telephone-fill text-primary"></i> Phone: +977 1234567890</li>
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill text-primary"></i> Location: Kathmandu, Nepal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg">
+            <i class="bi bi-house"></i> Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}
