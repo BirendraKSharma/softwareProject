@@ -4,11 +4,3 @@ __pycache__/
 .env
 instance/
 .venv/.venv/
-
-.venv
-__pycache__/
-*.pyc
-.env
-instance/
-.venv/
-.venv/
